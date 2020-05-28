@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Charts with Reveal.js</title>
+
+    <meta name="description" content="A plugin for reveal.js">
+    <meta name="author" content="Asvin Goel">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="https://awooo.ru/reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="https://awooo.ru/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://awooo.ru/reveal.js/dist/theme/black.css" id="theme">
+</head>
+
+<body>
+
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <section>
+                <h1>Charts with Reveal.js</h1>
+            </section>
+            <section>
+                <h3>Line chart from JSON string</h3>
+                <canvas class="stretch" data-chart="line">
+                    <!--
+                    {
+                     "data": {
+                      "labels": ["January"," February"," March"," April"," May"," June"," July"],
+                      "datasets":[
+                       {
+                        "data":[65,59,80,81,56,55,40],
+                        "label":"My first dataset","backgroundColor":"rgba(20,220,220,.8)"
+                       },
+                       {
+                        "data":[28,48,40,19,86,27,90],
+                        "label":"My second dataset","backgroundColor":"rgba(220,120,120,.8)"
+                       }
+                      ]
+                     },
+                     "options": { "responsive": "true" }
+                    }
+                    -->
+                </canvas>
+            </section>
+            <section>
+                <h3>Line chart with CSV data and JSON configuration</h3>
+                <canvas class="stretch" data-chart="line">
+                    My first dataset,  65, 59, 80, 81, 56, 55, 40
+                    <!-- This is a comment -->
+                    My second dataset, 28, 48, 40, 19, 86, 27, 90
+                    <!--
+                    {
+                    "data" : {
+                        "labels" : ["Enero", "Febrero", "Marzo", "Avril", "Mayo", "Junio", "Julio"],
+                        "datasets" : [{ "borderColor": "#0f0", "borderDash": ["5","10"] }, { "borderColor": "#0ff" } ]
+                        }
+                    }
+                    -->
+                </canvas>
+            </section>
+            <section>
+                <h3>Bar chart with CSV data</h3>
+                <canvas class="stretch" data-chart="bar">
+                    ,January, February, March, April, May, June, July
+                    My first dataset, 65, 59, 80, 81, 56, 55, 40
+                    My second dataset, 28, 48, 40, 19, 86, 27, 90
+                </canvas>
+            </section>
+            <section>
+                <h3>Stacked bar chart from CSV file with JSON configuration</h3>
+                <canvas class="stretch" data-chart="bar" data-chart-src="chart/data.csv">
+                    <!--
+                    {
+                    "data" : {
+                    "datasets" : [{ "backgroundColor": "#0f0" }, { "backgroundColor": "#0ff" } ]
+                    },
+                    "options": { "responsive": true, "scales": { "xAxes": [{ "stacked": true }], "yAxes": [{ "stacked": true }] } }
+                    }
+                    -->
+                </canvas>
+            </section>
+            <section>
+                <h3>Pie chart</h3>
+                <canvas class="stretch" data-chart="pie">
+                    ,Black, Red, Green, Yellow
+                    My first dataset, 40, 40, 20, 6
+                    My second dataset, 45, 40, 25, 4
+                </canvas>
+            </section>
+            <section>
+                <h2>Credits</h2>
+                <p>
+                    The charts are generated using <a href="http://www.chartjs.org/">Chart.js</a>.
+                <p>
+            </section>
+    </div>
+</div>
+
+<script src="https://awooo.ru/reveal.js/dist/reveal.js"></script>
+<script src="https://rawcdn.githack.com/kotborealis/reveal.js-plugins/dfa25ee12261fd41e57b57fd2d2eb38f4b6641a7/chart/Chart.min.js"></script>
+<script src="https://rawcdn.githack.com/kotborealis/reveal.js-plugins/dfa25ee12261fd41e57b57fd2d2eb38f4b6641a7/chart/csv2chart.js"></script>
+
+<script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        mouseWheel: true,
+        chart: {
+            defaults: {
+                global: {
+                    title: { fontColor: "#FFF" },
+                    legend: {
+                        position: "bottom",
+                        labels: { fontColor: "#FFF" },
+                    },
+                    tooltips: {
+                        labels: { fontColor: "#FFF" },
+                    },
+                },
+                scale: {
+                    scaleLabel: { fontColor: "#FFF" },
+                    gridLines: { color: "#FFF", zeroLineColor: "#FFF" },
+                    ticks: { fontColor: "#FFF" },
+                }
+            },
+            line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] },
+            bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]},
+            pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+            radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]},
+        },
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            RevealChart
+        ]
+    });
+</script>
+</body>
+</html>
